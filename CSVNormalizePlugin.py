@@ -27,19 +27,15 @@ class CSVNormalizePlugin:
             contents = lines[i].split(',')
             self.samples.append(contents[0])
             for j in range(self.n):
-               print i, j, self.m, self.n, len(contents)
                value = float(contents[j+1])
-               #print self.ADJ[i][j]
                self.ADJ[i][j] = value
             i += 1
 
       sums = []
-      print "M: ", self.m, " ", "N: ", self.n
       for j in range(self.m):
          sums.append(0)
          for i in range(self.n):
             sums[j] += self.ADJ[j][i]
-         print "SUM FOR SAMPLE ", j, ": ", sums[j]
 
    def output(self, filename):
       filestuff2 = open(filename, 'w')
@@ -49,7 +45,6 @@ class CSVNormalizePlugin:
          sum = float(0.0)
          for j in range(self.n):
             sum += self.ADJ[i][j]
-         #print "SUM: ", sum
          for j in range(self.n):
             self.ADJ[i][j] /= sum
             
